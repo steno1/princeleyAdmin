@@ -19,7 +19,7 @@ const Datatable=()=>{
     return(
         <div className="dataTable">
         <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
+        <DataGrid  className="grid"
           rows={userRows}
           columns={ userColumns.concat(actionColumns)}
           pageSize={5}
