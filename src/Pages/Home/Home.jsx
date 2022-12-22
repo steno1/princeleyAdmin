@@ -23,7 +23,7 @@ const Home=()=>{
 <Chart aspect={2/1} title="Last 6 Months (Revenue)"/>
 </div>
 <div className="listContainer">
-<div className="list">
+<div className="listTitle">
 Latest transaction
 <Tables/>
 </div>

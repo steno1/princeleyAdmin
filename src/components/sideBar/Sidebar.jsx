@@ -11,10 +11,20 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Person3OutlinedIcon from '@mui/icons-material/Person3Outlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import {Link} from "react-router-dom"
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkModeContext";
 const SideBar=()=>{
+    const {dispatch}=useContext(DarkModeContext)
     return(
         <div className="sidebar">
-        <div className="top"><span className="logo">Princeley_Admin</span></div>
+        
+        <div className="top">
+        <Link to="/" style={{textDecoration:"none"}}>
+        <span className="logo">Princeley_Admin</span>   
+        </Link>
+       
+        </div>
         <hr/>
         <div className="center">
 <ul>
@@ -26,11 +36,17 @@ const SideBar=()=>{
     <p className="title">LIST</p>
     <li>
     <Person2OutlinedIcon className="icon"/>
-        <span> Users</span>
+    <Link to="/users" style={{textDecoration:"none"}}>
+    <span> Users</span> 
+        </Link>
+       
     </li>
     <li>
     <ProductionQuantityLimitsOutlinedIcon className="icon"/>
-        <span> Products</span>
+    <Link to="/products" style={{textDecoration:"none"}}>
+    <span> Products</span>
+        </Link>
+        
     </li>
     <li>
     <ShoppingBasketIcon className="icon"/>
@@ -74,8 +90,8 @@ const SideBar=()=>{
 </ul>
         </div>
         <div className="bottom">
-            <div className="colorOption"></div>
-            <div className="colorOption"></div>
+            <div className="colorOption" onClick={()=>dispatch({type:"LIGHT"})}></div>
+            <div className="colorOption" onClick={()=>dispatch({type:"DARK"})}></div>
         </div>
         </div>
     )

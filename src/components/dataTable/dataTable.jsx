@@ -1,7 +1,13 @@
 import "./dataTable.scss"
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns, userRows } from "./datatableSource";   
+import { userColumns, userRows } from "./datatableSource";  
+import {Link} from "react-router-dom";
+import { useState } from "react";
 const Datatable=()=>{
+  const [data, setData]=useState(userRows)
+  const handleDelete=(id)=>{
+    setData(data.filter(item=>item.id !==id))
+  }
   const actionColumns=[
     {field: 'action',
      headerName: 'Action', 
@@ -9,8 +15,11 @@ const Datatable=()=>{
     renderCell:(params)=>{
       return(
         <div className="cellAction">
-<div className="viewButton">View</div>
-<div className="deleteButton">Delete</div>
+        <Link to="/users/test" style={{textDecoration:"none"}}>
+        <div className="viewButton">View</div>
+        </Link>
+
+<div className="deleteButton" onClick={()=>handleDelete(params.row.id)}>Delete</div>
         </div>
       )
     }},
@@ -18,9 +27,15 @@ const Datatable=()=>{
       
     return(
         <div className="dataTable">
+        <div className="dataTableTitle">
+Add New User
+<Link to="/users/new" style={{textDecoration:"none"}} className="link">
+        Add New
+        </Link>
+        </div>
         <div style={{ height: 400, width: '100%' }}>
-        <DataGrid  className="grid"
-          rows={userRows}
+        <DataGrid  className="datagrid"
+          rows={data}
           columns={ userColumns.concat(actionColumns)}
           pageSize={5}
           rowsPerPageOptions={[5]}
